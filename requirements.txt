@@ -1,0 +1,15 @@
+# 注意：安装时请使用: pip install torch --index-url https://download.pytorch.org/whl/cu124
+torch>=2.9.0
+torchvision>=0.20.0
+torchaudio>=2.5.0
+
+# --- Sionna 2.0 (PyTorch Native) ---
+sionna>=2.0.0
+sionna-rt>=2.0.0  
+
+# --- 辅助与监控 ---
+numpy>=2.1.0
+scipy>=1.13.0
+matplotlib>=3.9.0
+pynvml            # 必备：允许 Cline 监控你的显存状态
+ipykernel         # 方便在 VS Code 中运行 Jupyter Notebook

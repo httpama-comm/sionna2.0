@@ -94,3 +94,25 @@ Follow the "Scientific Method":
 - Explain *why* the bug occurred (Root Cause Analysis).
 - Provide the fix.
 - Provide a verification command (e.g., `pytest` or a specific python run command).
+
+# Sionna + PyTorch & Git Safety Rules
+
+## 1. Environment & VRAM Protection (CRITICAL)
+- **Local Hardware**: User has **11GB VRAM**.
+- **No Unset Installs**: DO NOT run `pip install` or `conda install` without explicit user permission.
+- **VRAM Awareness**: Before running any Sionna simulation, check if the expected memory exceeds 8GB. If so, suggest batching.
+- **No Torch Downgrade**: If you see a version conflict, STOP and report. Do not let automatic tools downgrade the GPU-optimized `torch`.
+
+## 2. Git-First Modification Protocol (SAFETY)
+- **Pre-flight Backup**: BEFORE modifying any existing code files, you MUST check if there are uncommitted changes.
+- **Mandatory Commit/Stash**: If the workspace is dirty, ask the user to commit or let you create a temporary branch/stash: `git stash push -m "Before Cline [Task Name]"`.
+- **Atomic Changes**: Prefer making changes in small, logical commits.
+- **Rollback Procedure**: If a modification causes unexpected errors or fails tests:
+    1. DO NOT keep hacking on the broken code.
+    2. Immediately inform the user and ask: "Should I rollback to the previous Git state or attempt a specific fix?"
+    3. Use `git restore .` or `git checkout [commit_hash]` ONLY after user confirmation.
+
+## 3. Sionna 2.0 Standards
+- **PyTorch Native**: Sionna 2.0 uses PyTorch. Do not use `tensorflow` or `tf.` namespaces.
+- **Complex Tensors**: Use `dtype=torch.complex64` for wireless signals.
+- **Device Placement**: Always explicitly use `.to(device)` as PyTorch is stricter than TF about cross-device operations.
