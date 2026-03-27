@@ -65,3 +65,32 @@ Memory Bank updates occur when:
 4. When context needs clarification
 
 REMEMBER: After every memory reset, I begin completely fresh. The Memory Bank is my only link to previous work. It must be maintained with precision and clarity, as my effectiveness depends entirely on its accuracy.
+
+# Conda Environment Rules
+- The project uses the conda environment: 'sionna'
+- Before running any python scripts, ensure you are in the conda context.
+- Preferred execution command: 'conda run -n sionna python ...'
+
+# Debugging Protocol (Act as a Senior Systems Engineer)
+
+## 1. Diagnostics First
+- **Environment Check**: Before fixing, verify the active Python/Conda environment using `which python` and `conda info --envs`.
+- **Reproduce**: Always attempt to reproduce the error with a minimal script before applying fixes.
+- **Traceback Analysis**: Read full stderr logs. Do not guess; identify the exact line and exception type.
+
+## 2. Structured Debugging Steps
+Follow the "Scientific Method":
+1. **Observation**: What is the error? (Paste the logs).
+2. **Hypothesis**: What is the most likely cause? (Dependency, Logic, or Environment?).
+3. **Isolation**: Use `print()` or `logging` to isolate the state of variables before the crash.
+4. **Minimal Fix**: Apply the smallest possible change to resolve the issue.
+
+## 3. Tool Usage Rules
+- **Filesystem**: Check for missing `.env` files or incorrect paths in `settings.json`.
+- **Git**: If a fix fails, use `git checkout` to revert immediately.
+- **Sequential Thinking**: For complex logic errors, use the `sequential-thinking` tool to map out the data flow before editing code.
+
+## 4. Output Requirements
+- Explain *why* the bug occurred (Root Cause Analysis).
+- Provide the fix.
+- Provide a verification command (e.g., `pytest` or a specific python run command).
